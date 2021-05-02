@@ -1,5 +1,6 @@
 ﻿using Core.DataAccess;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace DataAccess.Abstract
         //void Delete(Product product);// silme 
 
         //List<Product> GetAllCategory(int categoryId); //categoriye göre listeleme( category seçtiğimizde çalışan kod)
-
+        List<ProductDetailDto> GetProductDetails();
     }
 }
 // code refactoring
