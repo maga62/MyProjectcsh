@@ -19,5 +19,6 @@ namespace Business.Abstract
         IDataResult<Product> GetById(int productId);
         // void karşılığı IResult
         IResult Add(Product product);//bir bunda data yok
+        IResult Update(Product product);
    }
 }
