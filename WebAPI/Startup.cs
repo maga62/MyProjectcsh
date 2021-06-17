@@ -39,7 +39,9 @@ namespace WebAPI
             services.AddControllers();
             //services.AddSingleton<IProductService,ProductManager>();
             //services.AddSingleton<IProductDal, EfProductDal>();
-            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>()
+
+            services.AddCors();
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -71,20 +73,15 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+            
+            //bu web sayfasýndan istek gelirse isteðine cvb ver ben buna güveniyorum
+            app.UseCors(builder=>builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
+
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthentication();
-
             app.UseAuthorization();
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
